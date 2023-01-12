@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<!-- Login -->
+<div class="container">
+  <div class="login-form">
+    <form action="confirmorder" method="post">
+      {% if messages %}
+      <ul class="form-message" style="margin-top: 45px;">
+        {% for item in messages %}
+        <li class="{{ item.tags }}" style="color:blue; font-weight: bold;"> {{ item }} </li>
+        {% endfor %}
+      </ul>
+      <br>
+      {% endif %}
+      <p style="font-weight: bold;">
+        Delivery Information
+      </p>
+
+      <label for="text">Full Name</label>
+      <input type="text" placeholder="Enter Full name" name="full_name" required />
+
+      <label for="Mobile">Mobile</label>
+      <input type="text" placeholder="Enter Mobile" name="mobile" required />
+
+      <label for="psw">Address</label>
+      <input type="text" placeholder="Enter Address" name="address" required />
+      <p>
+        Payment cash on delivery only.
+      </p>
+
+      <div class="buttons">
+        <button type="submit" class="signupbtn">Place an order</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

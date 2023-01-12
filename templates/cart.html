@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    {% if messages %}
+      <ul class="form-message" style="margin-top: 45px; text-align: center">
+        {% for item in messages %}
+        <li class="{{ item.tags }}" style="color:blue; font-weight: bold;"> {{ item }} </li>
+        {% endfor %}
+      </ul>
+      <br>
+      {% endif %}
+
+    <div class="container cart">
+
+      <table>
+
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+
+    {% for item in cartx %}
+        <tr>
+          <td>
+            <div class="cart-info">
+              <img src="{{ item.product_id.thumbnail.url }}" alt="" />
+              <div>
+                <p>{{ item.product_id.name }}</p>
+                <span>Price: {{ item.product_id.final_price }} TK</span> <br />
+                <a href="{% url 'removeproduct' pid=item.product_id.id %}">remove</a>
+              </div>
+            </div>
+          </td>
+
+            <td class="invert">
+                <div class="quantity">
+                    <div class="quantity-select">
+                        <a href="{% url 'quantity' op='minus' pid=item.product_id.id %}">
+                            <div class="entry value-minus">-</div>
+                        </a>
+                        <div class="entry value"><span>{{ item.quantity }}</span></div>
+                        <a href="{% url 'quantity' op='plus' pid=item.product_id.id %}">
+                            <div class="entry value-plus active">+</div>
+                        </a>
+                    </div>
+                </div>
+            </td>
+
+          <td>{{ item.product_id.final_price }} TK</td>
+        </tr>
+    {% endfor %}
+
+      </table>
+      <div class="total-price">
+        <table>
+          <tr>
+            <td>Subtotal</td>
+            <td>{{ products_cost }} TK</td>
+          </tr>
+          <tr>
+            <td>Delivery fees</td>
+            <td>{{ delivery_fees }}</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>{{ total_cost }} TK</td>
+          </tr>
+        </table>
+        <a href="{% url 'confirmorder' %}" class="checkout btn">Proceed To Order</a>
+      </div>
+    </div>
+
+{% endblock %}

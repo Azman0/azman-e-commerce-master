@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!-- Product Details -->
+<section class="section product-detail">
+  {% for item in prod %}
+  <div class="details container">
+    <div class="left image-container">
+      <div class="main">
+        <img src="{{ item.image.url}}" id="zoom" alt="" />
+      </div>
+    </div>
+    <div class="right">
+      <span>{{ item.category_id.name}}</span>
+      <h1>{{ item.name }}</h1>
+      <div class="price">TK {{ item.final_price }}</div>
+      <form class="form">
+        <a href="{% url 'addtocart' product_id=item.id quantity=1 %}" class="addCart">Add To Cart</a>
+      </form>
+      <h3>Product Detail</h3>
+      <p>
+        {{ item.description }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

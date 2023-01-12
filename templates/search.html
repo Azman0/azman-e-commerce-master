@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<!-- All Products -->
+<section class="section all-products" id="products">
+  <div class="top container">
+    <h1>Search Result for {{ key }}</h1>
+
+  </div>
+  <div class="product-center container">
+
+    {% for item in products %}
+    <div class="product-item">
+      <div class="overlay">
+        <a href="#" class="product-thumb">
+          <img src="{{ item.image.url }}" alt="" />
+        </a>
+      </div>
+      <div class="product-info">
+        <span>{{ item.category_id.name }}</span>
+        <a href="{% url 'product' prodslug=item.slug %}"> {{ item.name }}</a>
+        <h4>{{ item.final_price }} TK</h4>
+      </div>
+      <ul class="icons">
+        <li><i class="bx bx-search"></i></li>
+        <li><i class="bx bx-cart"></i></li>
+      </ul>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+{% endblock %}

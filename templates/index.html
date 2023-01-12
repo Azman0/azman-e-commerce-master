@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="hero">
+  <div class="glide" id="glide_1">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <li class="glide__slide">
+          <div class="center">
+            <div class="left">
+              <span class="">New Inspiration 2021</span>
+              <h1 class="">NEW COLLECTION!</h1>
+              <p>Trending from women's style collection</p>
+              <a href="{% url 'register' %}" class="hero-btn">SHOP NOW</a>
+            </div>
+            <div class="right">
+              <img class="img1" src="{% static 'images/hero1.png' %}" alt="">
+            </div>
+          </div>
+        </li>
+        <li class="glide__slide">
+          <div class="center">
+            <div class="left">
+              <span>New Inspiration 2021</span>
+              <h1>THE PERFECT MATCH!</h1>
+              <p>Trending from women's style collection</p>
+              <a href="{% url 'register' %}" class="hero-btn">SHOP NOW</a>
+            </div>
+            <div class="right">
+              <img class="img2" src="{% static '/images/hero-2.jpg' %}" alt="">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Categories Section -->
+<section class="section category">
+  <div class="cat-center">
+    {% for item in categories %}
+    <div class="cat">
+      <img src="{{ item.image.url }}" alt="" />
+      <div>
+        <!--<p>WOMEN'S WEAR</p>-->
+        <a href="{% url 'category' catname=item.slug %}" class="hero-btn">{{item.name}}</a>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<!-- Featured -->
+
+<section class="section new-arrival">
+  <div class="title">
+    <h1>Featured</h1>
+    <p>All the latest picked from designer of our store</p>
+  </div>
+
+  <div class="product-center">
+
+    {% for item in featured_product %}
+    <div class="product-item">
+      <div class="overlay">
+        <a href="" class="product-thumb">
+          <img src="{{item.product_id.image.url}}" alt="" />
+        </a>
+
+      </div>
+      <div class="product-info">
+        <span>{{item.product_id.category_id}}</span>
+        <a href="{% url 'product' prodslug=item.product_id.slug %}"> {{item.product_id.name}}</a>
+        <h4>{{item.product_id.final_price}} TK</h4>
+      </div>
+      <ul class="icons">
+        
+        <li><i class="bx bx-search"></i></li>
+        <li><i class="bx bx-cart"></i></li>
+      </ul>
+    </div>
+    {% endfor %}
+
+
+  </div>
+
+
+</section>
+
+{% endblock %}

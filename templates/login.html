@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!-- Login -->
+<div class="container">
+  <div class="login-form">
+    <form action="login" method="post">
+      
+      {% if messages %}
+      <ul class="form-message" style="margin-top: 45px;">
+        {% for item in messages %}
+        <li class="{{ item.tags }}" style="color:blue; font-weight: bold;"> {{ item }} </li>
+        {% endfor %}
+      </ul>
+      <br>
+      {% endif %}
+
+      <h1>Login</h1>
+      <p>
+        Already have an account? Login in or
+        <a href="{% url 'register' %}">Sign Up</a>
+      </p>
+
+      <label for="email"><i class="fas fa-envelope-open-text ik"></i> Email</label>
+      <input type="text" placeholder="Enter Email" name="email" required />
+
+      <label for="psw"><i class="fas fa-key ik"></i> Password</label>
+      <input type="password" placeholder="Enter Password" name="password" required />
+      <div class="buttons">
+        <button type="submit" class="signupbtn" name="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+    <!-- Glide js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+    <!-- Custom StyleSheet -->
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}"/>
+    <title>E-commerce Website</title>
+</head>
+
+<body>
+<!-- Header -->
+<header class="header" id="header">
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <div class="container d-flex">
+            <p>Order Online Or Call Us: (+880) 162384904</p>
+
+        </div>
+    </div>
+    <div class="navigation">
+        <div class="nav-center container d-flex">
+            <a href="{% url 'index' %}" class="logo">
+                <h1>Sparrow's Emporium</h1>
+            </a>
+
+            <ul class="nav-list d-flex">
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'shop' %}" class="nav-link">Shop</a>
+                </li>
+{#                <li class="nav-item">#}
+{#                    <a href="{% url 'pp' %}" class="nav-link">Privacy & Policy</a>#}
+{#                </li>#}
+                <li class="nav-item">
+                    <a href="{% url 'about' %}" class="nav-link">About</a>
+                </li>
+{#                <li class="nav-item">#}
+{#                    <a href="{% url 'contact' %}" class="nav-link">Contact</a>#}
+{#                </li>#}
+                <li class="icons d-flex">
+                    {% if request.session.client_id %}
+                        <a href="{% url 'logout' %}" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                <circle cx="17" cy="4" r="2"></circle>
+                                <path
+                                        d="M15.777 10.969a2.007 2.007 0 0 0 2.148.83l3.316-.829-.483-1.94-3.316.829-1.379-2.067a2.01 2.01 0 0 0-1.272-.854l-3.846-.77a1.998 1.998 0 0 0-2.181 1.067l-1.658 3.316 1.789.895 1.658-3.317 1.967.394L7.434 17H3v2h4.434c.698 0 1.355-.372 1.715-.971l1.918-3.196 5.169 1.034 1.816 5.449 1.896-.633-1.815-5.448a2.007 2.007 0 0 0-1.506-1.33l-3.039-.607 1.772-2.954.417.625z">
+                                </path>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    <div class="icon">
+                        <i class="bx bx-search"></i
+                    </div>
+                    <a href="{% url 'cart' %}" class="icon">
+                        <i class="bx bx-cart"></i>
+
+                    </a>
+                </li>
+                <form action="{% url 'search' %}" method="post">
+                    <input type="text" name="key" placeholder="Search..">
+                </form>
+            </ul>
+
+            <div class="icons d-flex">
+                <div class="icon">
+                    <i class="bx bx-search"></i>
+                </div>
+                <a href="{% url 'cart' %}" class="icon">
+                    <i class="bx bx-cart"></i>
+
+                </a>
+                {% if request.session.client_id %}
+                    <a href="{% url 'logout' %}" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <circle cx="17" cy="4" r="2"></circle>
+                            <path
+                                    d="M15.777 10.969a2.007 2.007 0 0 0 2.148.83l3.316-.829-.483-1.94-3.316.829-1.379-2.067a2.01 2.01 0 0 0-1.272-.854l-3.846-.77a1.998 1.998 0 0 0-2.181 1.067l-1.658 3.316 1.789.895 1.658-3.317 1.967.394L7.434 17H3v2h4.434c.698 0 1.355-.372 1.715-.971l1.918-3.196 5.169 1.034 1.816 5.449 1.896-.633-1.815-5.448a2.007 2.007 0 0 0-1.506-1.33l-3.039-.607 1.772-2.954.417.625z">
+                            </path>
+                        </svg>
+                        <font style="font-size: 18px;">Logout</font>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="hamburger">
+                <i class="bx bx-menu-alt-left"></i>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+{% block body %}
+
+
+{% endblock %}
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="row">
+        <div class="col d-flex">
+            <h4>INFORMATION</h4>
+            <a href="{% url 'about' %}">About us</a>
+            <a href="{% url 'contact' %}">Contact Us</a>
+            <a href="{% url 'pp' %}">Term & Privacy</a>
+
+        </div>
+
+        <div class="col d-flex">
+            <span><i class='bx bxl-facebook-square'></i></span>
+            <span><i class='bx bxl-instagram-alt'></i></span>
+            <span><i class='bx bxl-github'></i></span>
+            <span><i class='bx bxl-twitter'></i></span>
+            <span><i class='bx bxl-pinterest'></i></span>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Custom Script -->
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
+<script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha384-JUMjoW8OzDJw4oFpWIB2Bu/c6768ObEthBMVSiIx4ruBIEdyNSUQAjJNFqT5pnJ6"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/zoomsl.min.js' %}"></script>
+<script>
+    $(function () {
+        console.log("hello");
+        $("#zoom").imagezoomsl({
+            zoomrange: [4, 4],
+        });
+    });
+</script>
+
+</html>

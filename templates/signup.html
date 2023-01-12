@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<!-- Login -->
+<div class="container">
+  <div class="login-form">
+    <form action="register" method="post">
+      {% if messages %}
+      <ul class="form-message" style="margin-top: 45px;">
+        {% for item in messages %}
+        <li class="{{ item.tags }}" style="color:blue; font-weight: bold;"> {{ item }} </li>
+        {% endfor %}
+      </ul>
+      <br>
+      {% endif %}
+      <p>
+        Please fill in this form to create an account. or
+        <a href="{% url 'login' %}">Login</a>
+      </p>
+
+      <label for="text"><i class="far fa-user ik"></i> Full Name</label>
+      <input type="text" placeholder="Enter Full name" name="full_name" required />
+
+      <label for="email"><i class="fas fa-envelope-open-text ik"></i> Email</label>
+      <input type="text" placeholder="Enter Email" name="email" required />
+
+      <label for="psw"><i class="fas fa-key ik"></i> Password</label>
+      <input type="password" placeholder="Enter Password" name="password1" required />
+
+      <label for="psw-repeat"><i class="fas fa-key ik"></i> Repeat Password</label>
+      <input type="password" placeholder="Repeat Password" name="password2" required />
+
+      <p>
+        By creating an account you agree to our
+        <a href="#">Privacy & Policy</a>.
+      </p>
+
+      <div class="buttons">
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
